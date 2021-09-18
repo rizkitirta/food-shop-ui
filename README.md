@@ -1,6 +1,6 @@
-# my_project
+# food shop ui 
 
-A new Flutter project.
+Flutter project.
 
 ## Getting Started
 
