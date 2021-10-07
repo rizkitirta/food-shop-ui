@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:my_project/helpers/constants.dart';
 import 'package:my_project/pages/onboard/model/onboarding_model.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:my_project/pages/sign_in/get_started_page.dart';
+import 'package:get/get.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({Key? key}) : super(key: key);
@@ -34,10 +37,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
         right: kDefaultMargin,
         child: InkWell(
           onTap: () {},
-          child: Text(
-            "Skip >>",
-            style: TextStyle(
-                color: Colors.orange[600], fontWeight: FontWeight.w600),
+          child: Row(
+            children: [
+              Text(
+                "Skip",
+                style: TextStyle(
+                    color: Colors.orange[600], fontWeight: FontWeight.w600),
+              ),
+              Icon(Icons.arrow_forward_ios, size: 13, color: Colors.orange[600])
+            ],
           ),
         ));
   }
@@ -64,11 +72,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     SizedBox(
                       height: 15,
                     ),
-                    Text(onBoarding.title),
+                    Text(onBoarding.title,
+                        style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.bold))),
                     SizedBox(height: 15),
                     Text(
                       onBoarding.description,
                       textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.grey[700]),
                     )
                   ],
                 ),
@@ -98,13 +110,43 @@ class _OnboardingPageState extends State<OnboardingPage> {
   buildGetStartedButton(BuildContext context) {
     return Positioned(
       bottom: 10.0,
+      left: kDefaultMargin,
       right: kDefaultMargin,
-        child: ElevatedButton(
-      onPressed: () {},
-      child: Row(children: [
-        Text("Get Started"),
-        Icon(Icons.arrow_right_outlined)
-      ],),
-    ));
+      child: InkWell(
+        child: Container(
+          height: 50.0,
+          child: GestureDetector(
+            onTap: () {
+              Get.off(() => GetStartedPage());
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black,
+                ),
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Center(
+                    child: Text(
+                      "Get Started",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Montserrat',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 1,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
