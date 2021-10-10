@@ -117,7 +117,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
           height: 50.0,
           child: GestureDetector(
             onTap: () {
-              Get.off(() => GetStartedPage());
+              Get.offAll(GetStartedPage());
             },
             child: Container(
               decoration: BoxDecoration(

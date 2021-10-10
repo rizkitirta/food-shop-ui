@@ -49,6 +49,7 @@ dev_dependencies:
   dots_indicator: ^2.0.0
   google_fonts: ^2.1.0
   font_awesome_flutter: ^9.1.0
+  flutter_custom_clippers: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

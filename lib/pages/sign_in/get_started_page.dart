@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_project/helpers/constants.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_project/pages/sign_in/sign_in_email.dart';
+import 'package:get/get.dart';
 
 class GetStartedPage extends StatefulWidget {
-  const GetStartedPage({Key? key}) : super(key: key);
-
   @override
   State<GetStartedPage> createState() => _GetStartedPageState();
 }
@@ -17,8 +16,8 @@ class _GetStartedPageState extends State<GetStartedPage> {
       body: Stack(
         children: [
           buildBackground(context),
-          buildSocialSignin(context),
           buildTitle(context),
+          buildSocialSignin(context),
         ],
       ),
     );
@@ -47,25 +46,34 @@ class _GetStartedPageState extends State<GetStartedPage> {
 
   buildSocialSignin(BuildContext context) {
     return Positioned(
-        bottom: 35.0,
+        bottom: 20.0,
         left: kDefaultMargin,
         right: kDefaultMargin,
         child: Column(
           children: [
-            Expanded(child: ButtonSignIn(Icons.person, 'Sign In')),
-            SizedBox(height: 6,),
             Row(
               children: [
                 Expanded(
-                    child: ButtonSignIn(Icons.facebook_rounded, 'Sign In')),
-                Expanded(child: ButtonSignIn(Icons.login, 'Register'))
+                    child: ButtonSignIn(
+                        Icons.facebook_rounded, 'Sign In', SignWithEmail())),
+                SizedBox(
+                  width: 5,
+                ),
+                Expanded(
+                  child: ButtonSignIn(
+                      Icons.email_outlined, 'Email', SignWithEmail()),
+                )
               ],
             ),
+            SizedBox(
+              height: 10,
+            ),
+            ButtonSignIn(Icons.login, 'Register', SignWithEmail())
           ],
         ));
   }
 
-  Container ButtonSignIn(IconData icon, String text) {
+  Container ButtonSignIn(IconData icon, String text, Widget Page) {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
@@ -74,7 +82,9 @@ class _GetStartedPageState extends State<GetStartedPage> {
         borderRadius: BorderRadius.circular(30.0),
       ),
       child: MaterialButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.to(() => Page);
+        },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Row(
