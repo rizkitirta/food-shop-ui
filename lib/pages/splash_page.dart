@@ -36,10 +36,6 @@ class _SplashPageState extends State<SplashPage> {
             SizedBox(
               height: 10,
             ),
-            Text(
-              "Food Shop",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            )
           ],
         ),
       ),

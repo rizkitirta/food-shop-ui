@@ -4,14 +4,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_project/pages/sign_in/register_page.dart';
 import 'package:get/get.dart';
 
-class SignWithEmail extends StatefulWidget {
-  const SignWithEmail({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  State<SignWithEmail> createState() => _SignWithEmailState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _SignWithEmailState extends State<SignWithEmail> {
+class _RegisterPageState extends State<RegisterPage> {
   bool showPass = false;
 
   @override
@@ -34,7 +34,7 @@ class _SignWithEmailState extends State<SignWithEmail> {
           ClipPath(
             clipper: WaveClipperOne(),
             child: Container(
-                height: 520,
+                height: 610,
                 color: Colors.orange,
                 child: Container(
                     padding: EdgeInsets.fromLTRB(18, 50.0, 18, 0.0),
@@ -57,7 +57,7 @@ class _SignWithEmailState extends State<SignWithEmail> {
           Container(
             margin: EdgeInsets.only(top: 150.0),
             padding: EdgeInsets.symmetric(horizontal: 25),
-            height: 500,
+            height: 550,
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,13 +76,24 @@ class _SignWithEmailState extends State<SignWithEmail> {
                   color: Colors.white,
                 ),
                 buildTextField(
-                    text: "Email",
-                    label: "Email",
+                    text: "Full Name",
+                    label: "Full Name",
+                    icon: Icons.person,
+                    isPassword: false),
+                buildTextField(
+                    text: "Email Address",
+                    label: "Email Address",
                     icon: Icons.email_outlined,
+                    isMail: true,
                     isPassword: false),
                 buildTextField(
                     text: "Password",
                     label: "Password",
+                    icon: Icons.lock_clock_outlined,
+                    isPassword: true),
+                buildTextField(
+                    text: "Confirm Password",
+                    label: "Confirm Password",
                     icon: Icons.lock_clock_outlined,
                     isPassword: true),
                 const SizedBox(
@@ -107,7 +118,7 @@ class _SignWithEmailState extends State<SignWithEmail> {
                           width: 5,
                         ),
                         Text(
-                          'Sign In',
+                          'Daftar',
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'Montserrat',
@@ -120,64 +131,6 @@ class _SignWithEmailState extends State<SignWithEmail> {
                     ),
                   ),
                 ),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  const Text(
-                    "Tidak Punya Akun?",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  TextButton(
-                      child: const Text(
-                        "Daftar Sekarang",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                      onPressed: () {
-                        Get.to(() => RegisterPage());
-                      }),
-                ]),
-                Center(
-                    child: Column(
-                  children: [
-                    const Text(
-                      "Atau Daftar Dengan",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: 50,
-                          width: 50,
-                          margin: EdgeInsets.only(top: 20),
-                          decoration: BoxDecoration(
-                              color: Colors.red[500],
-                              borderRadius: BorderRadius.circular(15)),
-                          child: const Center(
-                              child: FaIcon(
-                            FontAwesomeIcons.google,
-                            color: Colors.white,
-                          )),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          height: 50,
-                          width: 50,
-                          margin: EdgeInsets.only(top: 20),
-                          decoration: BoxDecoration(
-                              color: Colors.blue[500],
-                              borderRadius: BorderRadius.circular(15)),
-                          child: const Center(
-                              child: FaIcon(
-                            FontAwesomeIcons.facebook,
-                            color: Colors.white,
-                          )),
-                        ),
-                      ],
-                    ),
-                  ],
-                )),
               ],
             ),
           ),
@@ -187,9 +140,14 @@ class _SignWithEmailState extends State<SignWithEmail> {
   }
 
   TextField buildTextField(
-      {String? text, String? label, IconData? icon, bool isPassword = false}) {
+      {String? text,
+      String? label,
+      IconData? icon,
+      bool isMail = false,
+      bool isPassword = false}) {
     return TextField(
       style: const TextStyle(color: Colors.white),
+      keyboardType: isMail ? TextInputType.emailAddress : null,
       decoration: InputDecoration(
         hintText: text,
         labelText: label,
@@ -204,7 +162,7 @@ class _SignWithEmailState extends State<SignWithEmail> {
         border: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
         ),
-          icon: Icon(
+        icon: Icon(
           icon,
           color: Colors.white,
         ),
